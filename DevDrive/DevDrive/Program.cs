@@ -1,3 +1,6 @@
+using DevDrive.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace DevDrive
 {
     public class Program
@@ -8,6 +11,9 @@ namespace DevDrive
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<BlogDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("blogDbConntectionString")));
 
             var app = builder.Build();
 
